@@ -1,10 +1,13 @@
+# Time module allows us to access time.
 import time
 
-# for loop = a statement that will execute it's block of code
-# 		     a limited amount of times
+# For loop = a statement that will execute it's block of code
+# 		     a limited amount of times.
 
-#			 while loop = unlimited
-# 			 for loop = limited
+#			 While loop = unlimited.
+# 			 For loop = limited.
+
+# i = index, can be whatever it's just a variable.
 
 # for i in range(10):
 # 	print(i+1)
@@ -12,7 +15,7 @@ import time
 # for i in range(50, 100+1, 2):
 # 	print(i)
 
-# we can iterate through data too here is a string.
+# We can iterate through data too. Here is a string.
 # for i in "JustJeeCode":
 # 	print(i)
 
