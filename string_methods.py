@@ -1,7 +1,7 @@
 name = "JustJee"
 
-#print(len(name))
-#print(name.find('t'))
+# print(len(name))
+# print(name.find('t'))
 # print(name.capitalize())
 # print(name.upper())
 # print(name.lower())
