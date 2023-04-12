@@ -6,16 +6,16 @@ EXAMPLE: x = y <- x is the variable and y is the value.
 
 We can store a variable as 4 main data types:
 
-String = which is text (wrapped in quotation marks.)
+String or Str = which is text (wrapped in quotation marks.)
 EXAMPLE: "hi"
 
-Integer = a whole number can be positive or negative (no quotation marks.)
+Integer or Int = a whole number can be positive or negative (no quotation marks.)
 EXAMPLE: 4
 
 Float = a decimal number can be positive or negative (no quotation marks.)
 EXAMPLE: 6.424
 
-Boolean = a true or false value (no quotation marks.)
+Boolean or Bool = a true or false value (no quotation marks.)
 EXAMPLE: True
 
 
