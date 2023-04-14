@@ -1,37 +1,43 @@
-# Loop Control Statements = change a loops execution from its normal sequence.
+"""
+Loop Control Statements = change a loops execution from its normal sequence.
 
-# break		= 	used to terminate the loop entirely.
-# continue	= 	skips to the next iteration of the loop.
-# pass		=	does nothing, acts as a placeholder.
+break	= 	used to terminate the loop entirely.
+continue  = 	skips to the next iteration of the loop.
+pass	=	does nothing, acts as a placeholder.
 
 
-# Example for break, we break this while loop when our name
-# variable = something.
+SYNTAX:
 
-# while True:
-# 	name = input("Enter your name: ")
-# 	if name != "":
-# 		break
+break, continue, pass
 
-# Example for continue, we continue if == "-"
-# to the next iteration of the loop.
 
-# phone_number = "123-456-7890"
+EXAMPLE -> Example of the break statement:
 
-# for i in phone_number:
-# 	if i == "-":
-# 		continue
-	
-# 	print(i, end="")
+while True:
+	name = input("Enter your name: ")
+	if name != "": <- if name doesn't equal nothing.
+		break <- break which will end the loop.
 
-# Example for pass, if i == 13, pass to next
-# line of code.
+
+EXAMPLE -> Example for the continue statement:
+
+phone_number = "123-456-7890"
+
+for i in phone_number:
+	if i == "-": <- if i equals the -
+		continue <- continue which will skip to the next iteration.
+
+
+EXAMPLE -> Example for pass:
+
 for i in range(1, 21):
 
-	if i == 13:
-		pass
+	if i == 13: <- if i equals 13
+		pass <- this code will be ignored.
 	else:
 		print(i)
+
+	print("hi") <- This code will still run after the pass.
 
 
 
