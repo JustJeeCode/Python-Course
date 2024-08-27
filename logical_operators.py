@@ -11,7 +11,7 @@
 # else:
 # 	print("The outdoor event is still on!")
 
-temp = 25
+temp = 20
 is_sunny = False
 
 if temp >= 28 and is_sunny:
