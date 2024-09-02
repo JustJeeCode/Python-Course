@@ -12,29 +12,48 @@ Wordle game in Python
 import random
 
 
-randNum = random.randint(0, 5850)
+board = [["⬜", "⬜", "⬜", "⬜", "⬜"],
+		 ["⬜", "⬜", "⬜", "⬜", "⬜"],
+		 ["⬜", "⬜", "⬜", "⬜", "⬜"],
+		 ["⬜", "⬜", "⬜", "⬜", "⬜"],
+		 ["⬜", "⬜", "⬜", "⬜", "⬜"],
+		 ["⬜", "⬜", "⬜", "⬜", "⬜"]]
 guesses = []
+randNum = random.randint(0, 5850)
 
-
-# Selecting a random number that is divisable by 5
+# Picking a random number that is divisible by 5
 while randNum % 5 != 0:
 	randNum = random.randint(0, 5850)
 
 randNum2 = randNum + 5
 
-
-# Saving the text file words.txt as the variable words
+# Selecting a random word
 with open("words.txt") as file:
 	words = file.read()
 
 word = words[randNum:randNum2]
-
 print(word)
 
-# Prompt user
-while word not in guesses:
-	guess = input("Enter in a word: ")
+# Game loop
+while True:
+	for row in board:
+		for element in row:
+			print(element, end=" ")
+		print()
 
-	if guess.upper() == word:
-		print(f"That is correct the word was: {word}!")
-		break
+	guess = input("Enter a word: ")
+	guesses.append(guess)
+
+	break
+
+	# Detect which letters perfectly match up
+
+	# Detect which letters are in the word but do not match up
+
+	# Detect how many guesses there have been
+
+	# Detect if the player has gotten the word right
+
+
+
+
