@@ -1,17 +1,8 @@
-"""
-Wordle game in Python
-
-- Computer chooses a random word
-- Player takes a guess
-- Correct letters are highlighted
-- Letters in the wrong place are highlighted
-- Prompts again, repeats till player solves puzzle or fails
-
-"""
+# Wordle game in Python
 
 import random
 
-
+# Variables
 board = [["⬜", "⬜", "⬜", "⬜", "⬜"],
 		 ["⬜", "⬜", "⬜", "⬜", "⬜"],
 		 ["⬜", "⬜", "⬜", "⬜", "⬜"],
@@ -19,19 +10,17 @@ board = [["⬜", "⬜", "⬜", "⬜", "⬜"],
 		 ["⬜", "⬜", "⬜", "⬜", "⬜"],
 		 ["⬜", "⬜", "⬜", "⬜", "⬜"]]
 guesses = []
-randNum = random.randint(0, 5850)
 
-# Picking a random number that is divisible by 5
-while randNum % 5 != 0:
-	randNum = random.randint(0, 5850)
+# Word generator
+randomWord = random.randint(0, 5850)
 
-randNum2 = randNum + 5
+while randomWord % 5 != 0:
+	randomWord = random.randint(0, 5850)
 
-# Selecting a random word
 with open("words.txt") as file:
 	words = file.read()
 
-word = words[randNum:randNum2]
+word = words[randomWord:randomWord+5]
 print(word)
 
 # Game loop
@@ -41,19 +30,12 @@ while True:
 			print(element, end=" ")
 		print()
 
-	guess = input("Enter a word: ")
+	guess = input("Enter a word: ").lower()
 	guesses.append(guess)
 
-	break
-
-	# Detect which letters perfectly match up
-
-	# Detect which letters are in the word but do not match up
-
-	# Detect how many guesses there have been
-
-	# Detect if the player has gotten the word right
-
+	if guess == word:
+		print(f"You guessed the word in: {len(guesses)} attempt/s!")
+		break
 
 
 
