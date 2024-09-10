@@ -1,0 +1,12 @@
+Set up a board 6 x 5 x
+The player has 6 guesses in total x
+Generate a random word with 2 random numbers x
+Player enters a guess x
+	- Check if the word is correct x
+		- Turn the current row green and tell the user how many guesses they got the word in x
+	- Check if the guess has any correct letters in the word
+		- Check if those letters are in the correct spot
+		- Check if those letters are in the wrong spot
+	Prompt user again
+
+⬜🟩🟨
