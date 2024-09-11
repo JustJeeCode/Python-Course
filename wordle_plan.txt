@@ -7,7 +7,7 @@ Player enters a guess x
 	- Check if the guess has any correct letters in the word x
 		- Check if those letters are in the correct spot x
 		- Check if those letters are in the wrong spot x
-	Prompt user again
+	Prompt user again x
 
 Bugs:
 	- IF there is one letter in a word and a user enters a guess with two of those letters it will give the user a yellow box
