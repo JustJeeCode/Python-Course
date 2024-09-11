@@ -4,9 +4,13 @@ Generate a random word with 2 random numbers x
 Player enters a guess x
 	- Check if the word is correct x
 		- Turn the current row green and tell the user how many guesses they got the word in x
-	- Check if the guess has any correct letters in the word
-		- Check if those letters are in the correct spot
-		- Check if those letters are in the wrong spot
+	- Check if the guess has any correct letters in the word x
+		- Check if those letters are in the correct spot x
+		- Check if those letters are in the wrong spot x
 	Prompt user again
+
+Bugs:
+	- IF there is one letter in a word and a user enters a guess with two of those letters it will give the user a yellow box
+	
 
 ⬜🟩🟨

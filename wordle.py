@@ -33,47 +33,47 @@ def random_word():
 	
 
 def guess_checker(guess, currentRow, currentCol):
+	guesses.append(guess)
+
+	print()
+
 	if guess == word:
 		for element in board[currentRow]:
 			board[currentRow][currentCol] = "🟩"
 			currentCol += 1
-		print()
+
 		display_board()
-		print(f"\nCorrect the word was {word}!\nYou got it in {len(guesses)+1} guesses!")
+		print(f"\nCorrect the word was {word}!\nYou got it in {len(guesses)} guesses!")
 		return "won"
 
 	elif guess != word:
-		guesses.append(guess)
+		for letter in guess:
+			if letter in word:
+				board[currentRow][currentCol] = "🟨"
 
-		# Check if the guess has any correct letters in the word
+			if letter == word[currentCol]:
+				board[currentRow][currentCol] = "🟩"
 
-		# Check if the letters are in the correct spot
-
-		# Check if the letters are in the wrong spot
+			currentCol += 1
 
 		if len(guesses) >= 6:
+			display_board()
 			print(f"\nIncorrect, you used all {len(guesses)} guesses...\nThe word was {word}.\n")
 			return "lost"
 
 
+word = random_word()
 
 while running:
 	display_board()
 
-	word = random_word()
-	print(word)
+	guess = ""
+	while not guess.isalpha() or len(guess) != 5:
+		guess = input(f"\n>>> ").upper()
 
-	guess = input(f"\n>>> ").upper()
 	result = guess_checker(guess, currentRow=len(guesses), currentCol=0)
 
 	if result == "won" or result == "lost":
 		running = False
 
 	
-
-
-
-
-
-
-
