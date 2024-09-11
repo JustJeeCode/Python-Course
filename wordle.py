@@ -35,26 +35,30 @@ def generate_word():
 def check_guess(guess):
 	col = 0
 	row = len(guesses)
+	incorrectLetters = set()
 	guesses.append(guess)
 
-	# if the guess = the word
+	# if guess is correct
 	if guess == word:
 		for letter in board[row]:
 			board[row][col] = "🟩"
 			col += 1
 		return "won"
 
-	# check for correct letters
+	# if guess is not correct
+	# mark correct letters
 	for letter in guess:
 		if letter == word[col]:
 			board[row][col] = "🟩"
 		col += 1
+	col = 0
 
-	# check for incorrect positions
+	# add incorrect letters to string incorrectLetters
 	for letter in guess:
-		if board[row][col] != "🟩"
-			# check if that letter is in the word
-			# if it is and it isn't a previous letter turn it yellow
+		if letter != word[col]:
+			incorrectLetters.add(letter)
+		col += 1
+	col = 0
 
 
 	# if player used all guesses
