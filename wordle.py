@@ -21,6 +21,7 @@ def display_board():
 
 
 def generate_word():
+	word = []
 	randNum = random.randint(0, 5850)
 
 	while randNum % 5 != 0:
@@ -32,60 +33,66 @@ def generate_word():
 	return words[randNum:randNum+5]
 	
 
-def check_guess(guess):
-	col = 0
+def check_guess(guess, word):
 	row = len(guesses)
-	incorrectLetters = set()
-	guesses.append(guess)
+	col = 0
 
-	# if guess is correct
+	guesses.append(guess)
+	word = list(word)
+	guess = list(guess)
+	result = ["", "", "", "", ""]
+
 	if guess == word:
-		for letter in board[row]:
+		for cell in board[row]:
 			board[row][col] = "🟩"
 			col += 1
 		return "won"
 
-	# if guess is not correct
-	# mark correct letters
 	for letter in guess:
 		if letter == word[col]:
 			board[row][col] = "🟩"
+			result[col] = "green"
 		col += 1
 	col = 0
 
-	# add incorrect letters to string incorrectLetters
 	for letter in guess:
 		if letter != word[col]:
-			incorrectLetters.add(letter)
+			if letter in word:
+				result[col] = "yellow"
+			else:
+				result[col] = "grey" 
 		col += 1
 	col = 0
 
+	print(result)
 
-	# if player used all guesses
 	if len(guesses) == 6:
 		return "lost"
 
 
 word = "APPLE"
+print(word)
 
 while running:
-	print(word)
 	display_board()
 
 	guess = ""
-	while not guess.isalpha() or len(guess) != 5:
+	while not guess.isalpha():
 		guess = input(f"\n>>> ").upper()
 	print()
 
-	result = check_guess(guess)
-
-	if result == "won":
-		display_board()
-		print(f"\nCorrect the word was {word}!\nYou got it in {len(guesses)} guesses!")
+	if guess == "Q":
 		running = False
-	elif result == "lost":
+
+	checkGuess = check_guess(guess, word)
+
+	if checkGuess == "won":
 		display_board()
-		print(f"\nIncorrect, you used all {len(guesses)} guesses...\nThe word was {word}.\n")
+		print(f"\nCongratulations you guessed the word: {word}\nYou got the word in {len(guesses)} guesses!\n")
+		running = False
+	elif checkGuess == "lost":
+		display_board()
+		print(f"\nSorry, you used up all {len(guesses)} guesses...\nThe word was: {word}\n")
 		running = False
 
 

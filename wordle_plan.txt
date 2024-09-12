@@ -11,10 +11,6 @@ Player enters a guess x
 
 Bugs:
 	- IF there is one letter in a word and a user enters a guess with two of those letters it will give the user a yellow box
-		- For letter in guess, check if that letter is not correct
-			- If it isn't correct we add that letter to a list of incorrect letters
-				- We check if there are double letters in the list
-					- If that word doesn't have double letters we remove one
-	
+
 
 ⬜🟩🟨
