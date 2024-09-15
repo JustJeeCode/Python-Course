@@ -37,4 +37,4 @@ def is_weekend(day):
 		case _:
 			return False
 
-print(is_weekend("Pizza"))
+print(is_weekend("Saturday"))
