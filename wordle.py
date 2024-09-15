@@ -21,7 +21,6 @@ def display_board():
 
 
 def generate_word():
-	word = []
 	randNum = random.randint(0, 5850)
 
 	while randNum % 5 != 0:
@@ -30,7 +29,9 @@ def generate_word():
 	with open("words.txt") as file:
 		words = file.read()
 
-	return words[randNum:randNum+5]
+	word = words[randNum:randNum+5]
+
+	return word
 	
 
 def check_guess(guess, word):
@@ -40,31 +41,36 @@ def check_guess(guess, word):
 	guesses.append(guess)
 	word = list(word)
 	guess = list(guess)
-	result = ["", "", "", "", ""]
+	amountOfLetters = {}
 
+	for letter in word:
+		amount = word.count(letter)
+		amountOfLetters.update({letter: amount})
+
+	# if guess is correct
 	if guess == word:
 		for cell in board[row]:
 			board[row][col] = "🟩"
 			col += 1
 		return "won"
 
+	# if guess is incorrect and x letters are correct
 	for letter in guess:
 		if letter == word[col]:
 			board[row][col] = "🟩"
-			result[col] = "green"
 		col += 1
 	col = 0
 
+	# if guess is incorrect and x letters are in the incorrect spot
 	for letter in guess:
-		if letter != word[col]:
-			if letter in word:
-				result[col] = "yellow"
-			else:
-				result[col] = "grey" 
+		if letter != word[col] and letter in word:
+			if amountOfLetters[letter] > 0:
+				board[row][col] = "🟨"
+				amountOfLetters[letter] -= 1
 		col += 1
 	col = 0
 
-	print(result)
+	print(amountOfLetters)
 
 	if len(guesses) == 6:
 		return "lost"
