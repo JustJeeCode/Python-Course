@@ -9,8 +9,6 @@ board = [["⬜", "⬜", "⬜", "⬜", "⬜"],
 		 ["⬜", "⬜", "⬜", "⬜", "⬜"],
 		 ["⬜", "⬜", "⬜", "⬜", "⬜"],
 		 ["⬜", "⬜", "⬜", "⬜", "⬜"]]
-guesses = []
-running = True
 
 
 def display_board():
@@ -35,71 +33,51 @@ def generate_word():
 	
 
 def check_guess(guess, word):
-	row = len(guesses)
-	col = 0
+	correctLetters = []
 
-	guesses.append(guess)
-	word = list(word)
-	guess = list(guess)
-	amountOfLetters = {}
-
-	for letter in word:
-		amount = word.count(letter)
-		amountOfLetters.update({letter: amount})
-
-	# if guess is correct
 	if guess == word:
-		for cell in board[row]:
-			board[row][col] = "🟩"
-			col += 1
-		return "won"
-
-	# if guess is incorrect and x letters are correct
-	for letter in guess:
-		if letter == word[col]:
-			board[row][col] = "🟩"
-		col += 1
-	col = 0
-
-	# if guess is incorrect and x letters are in the incorrect spot
-	for letter in guess:
-		if letter != word[col] and letter in word:
-			if amountOfLetters[letter] > 0:
-				board[row][col] = "🟨"
-				amountOfLetters[letter] -= 1
-		col += 1
-	col = 0
-
-	print(amountOfLetters)
-
-	if len(guesses) == 6:
-		return "lost"
+		return True
+	else:
+		# iterate through every letter in our guess
+		# if our letter matches with the guess letter add it to the list as True
+		# if the letter doesn't match the guess letter add it to the list as False
 
 
-word = "APPLE"
-print(word)
 
-while running:
-	display_board()
 
-	guess = ""
-	while not guess.isalpha():
-		guess = input(f"\n>>> ").upper()
-	print()
 
-	if guess == "Q":
-		running = False
+def main():
+	word = generate_word()
+	guesses = 0
+	running = True
 
-	checkGuess = check_guess(guess, word)
+	print(word)
 
-	if checkGuess == "won":
+	while running:
 		display_board()
-		print(f"\nCongratulations you guessed the word: {word}\nYou got the word in {len(guesses)} guesses!\n")
-		running = False
-	elif checkGuess == "lost":
-		display_board()
-		print(f"\nSorry, you used up all {len(guesses)} guesses...\nThe word was: {word}\n")
-		running = False
+		guess = input("\nEnter a word to guess: ").upper()
+		
+		if not guess.isalpha() or not len(guess) == 5:
+			print("\nThat guess is invalid.\n")
+			continue
+
+		guesses += 1
+		check_guess(guess, word)
+
+		if check_guess(guess, word) == True:
+			print(f"\nCongratulations! You guessed the word. You got it in {guesses} guesses.")
+			break
+		else:
+			print(check_guess(guess, word))
+			break
+
+
+if __name__ == "__main__":
+	main()
+
+
+
+
 
 
 
