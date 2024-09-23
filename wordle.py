@@ -28,48 +28,59 @@ def generate_word():
 		words = file.read()
 
 	word = words[randNum:randNum+5]
-
 	return word
 	
 
-def check_guess(guess, word):
-	correctLetters = []
+def check_guess(word, guess, guesses):
+	letters = {word[0]: 0, 
+			   word[1]: 0,
+			   word[2]: 0,
+			   word[3]: 0,
+			   word[4]: 0,
+			   }
 
-	if guess == word:
+	if word == guess:
+		for i in range(len(word)):
+			board[guesses-1][i] = "🟩"
 		return True
 	else:
-		# iterate through every letter in our guess
-		# if our letter matches with the guess letter add it to the list as True
-		# if the letter doesn't match the guess letter add it to the list as False
+		for i in range(len(word)):
+			if guess[i] == word[i]:
+				board[guesses-1][i] = "🟩"
+			else:
+				letters[word[i]] += 1
 
+		for i in range(len(word)):
+			if guess[i] in letters and letters[guess[i]] > 0:
+				board[guesses-1][i] = "🟨"
+				letters[guess[i]] -= 1
 
-
+	print(letters)
 
 
 def main():
-	word = generate_word()
+	word = "APPLE"
 	guesses = 0
-	running = True
+	is_running = True
 
 	print(word)
 
-	while running:
+	while is_running:
 		display_board()
 		guess = input("\nEnter a word to guess: ").upper()
+		print()
 		
-		if not guess.isalpha() or not len(guess) == 5:
-			print("\nThat guess is invalid.\n")
+		if not guess.isalpha() or len(guess) != len(word):
+			print("That guess is invalid...\n")
 			continue
 
 		guesses += 1
-		check_guess(guess, word)
-
-		if check_guess(guess, word) == True:
-			print(f"\nCongratulations! You guessed the word. You got it in {guesses} guesses.")
-			break
-		else:
-			print(check_guess(guess, word))
-			break
+		
+		if check_guess(word, guess, guesses):
+			display_board()
+			if guesses == 1: print(f"\nCongratulations! You guessed the word. You got it in {guesses} guess.\n")
+			else: print(f"\nCongratulations! You guessed the word. You got it in {guesses} guesses.\n")
+			is_running = False
 
 
 if __name__ == "__main__":
