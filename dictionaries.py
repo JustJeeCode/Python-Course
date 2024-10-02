@@ -37,3 +37,5 @@ items = capitals.items()
 
 for key, value in capitals.items():
 	print(f"{key}: {value}")
+
+	

@@ -1,5 +1,6 @@
 # Wordle game in Python
 
+from collections import defaultdict
 import random
 
 
@@ -32,38 +33,31 @@ def generate_word():
 	
 
 def check_guess(word, guess, guesses):
-	letters = {word[0]: 0, 
-			   word[1]: 0,
-			   word[2]: 0,
-			   word[3]: 0,
-			   word[4]: 0,
-			   }
+	letters = defaultdict(int)
 
-	if word == guess:
+	for letter in word:
+		letters[letter] += 1
+
+	if guess == word:
 		for i in range(len(word)):
 			board[guesses-1][i] = "🟩"
 		return True
 	else:
 		for i in range(len(word)):
 			if guess[i] == word[i]:
+				letters[guess[i]] -= 1
 				board[guesses-1][i] = "🟩"
-			else:
-				letters[word[i]] += 1
 
 		for i in range(len(word)):
-			if guess[i] in letters and letters[guess[i]] > 0:
-				board[guesses-1][i] = "🟨"
+			if guess[i] != word[i] and guess[i] in word and letters[guess[i]] > 0:
 				letters[guess[i]] -= 1
-
-	print(letters)
+				board[guesses-1][i] = "🟨"
 
 
 def main():
-	word = "APPLE"
+	word = generate_word()
 	guesses = 0
 	is_running = True
-
-	print(word)
 
 	while is_running:
 		display_board()
@@ -82,13 +76,14 @@ def main():
 			else: print(f"\nCongratulations! You guessed the word. You got it in {guesses} guesses.\n")
 			is_running = False
 
+		if guesses >= 6:
+			display_board()
+			print(f"\nSorry, you have run out of guesses. The word was {word}.\n")
+			is_running = False
+
 
 if __name__ == "__main__":
 	main()
-
-
-
-
 
 
 
