@@ -33,6 +33,7 @@ class Student:
 student1 = Student("Sandy", 4.0)
 student2 = Student("Spongebob", 2.5)
 student3 = Student("Patrick", 1.0)
+student4 = Student("Squidward", 3.2)
 
 print(Student.get_count())
 print(Student.get_average_gpa())
