@@ -19,10 +19,10 @@ class Employee:
 		valid_positions = ["Manager", "Cashier", "Cook", "Janitor"]
 		return position in valid_positions
 
+
 employee1 = Employee("Eugene", "Manager")
 employee2 = Employee("Squidward", "Cashier")
 employee3 = Employee("Spongebob", "Cook")
-
 
 print(Employee.is_valid_position("Rocket Scientist"))
 print(Employee.is_valid_position("Cook"))
